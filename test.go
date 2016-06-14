@@ -10,7 +10,7 @@ type Error struct {
         Err  error
 }
 
-func main() {
+func Test() {
 	cmd := exec.Command("npm", "--version")
 	cmd1 := exec.Command("yo", "-v")
 	cmd2 := exec.Command("docker", "version")

@@ -6,11 +6,12 @@ import (
 	"log"
 	"os/exec"
 	"bufio"
-    	"os"
+    	"os"		
 )
 
 
-func main(){
+func Install(){
+
 	if runtime.GOOS == "windows" {
     	fmt.Println("Cool Good to know you are Windows user")
 	}
@@ -33,32 +34,31 @@ func main(){
 	//Installing Watson utilities
 	fmt.Println("You can install the following watson utilites (Kale/Runner/Ally)")
    	scan := bufio.NewScanner(os.Stdin)
-   	scan.Scan()
-   	//fmt.Println("So you choose = scan.Text()")
+   	scan.Scan()   	
 
 	//Installing Kale
-	if scan.Text() == "kale" {                
+	if scan.Text() == "kale" { 
 	cmd1 := exec.Command("wget","https://github.com/IBM-Watson/kale/releases/download/v1.5.0/kale-1.5.0-standalone.jar")
 	cmd2 := exec.Command("alias", "kale='java -jar /full/path/to/kale-1.5.0-standalone.jar'")	
 
 	err1 := cmd1.Start()
 	err2 := cmd2.Start()
 	if err1 != nil {
-                log.Fatal(err)
+                log.Fatal(err1)
         }
 	if err2 != nil {
-                log.Fatal(err)
+                log.Fatal(err2)
         }
         log.Printf("Installing Kale..")
         err1= cmd1.Wait()
 	err2= cmd2.Wait()
 	log.Printf("You have installed kale successfully.")
-	}
+	}               		
 
 	//Installing Runner
 	if scan.Text() == "runner" {                
-	cmd3 := exec.Command("wget","https://github.com/IBM-Watson/kale/releases/download/v1.5.0/kale-1.5.0-standalone.jar")
-	cmd4 := exec.Command("alias", "kale='java -jar /full/path/to/kale-1.5.0-standalone.jar'")	
+	cmd3 := exec.Command("npm", "install", "--global", "gulp-cli")
+	cmd4 := exec.Command("npm", "install", "--save-dev", "gulp")	
 
 	err3 := cmd3.Start()
 	err4 := cmd4.Start()
@@ -79,18 +79,16 @@ func main(){
 	//Checking Bower is installed or not
 	log.Printf("Checking if you have bower installed or not")
 	cmd5 := exec.Command("bower", "--version")
-	if err5 != nil {
-                log.Fatal(err)
-		log.Printf("Sorry you do not have bower installed.Installing bower...")
-		cmd6 := exec.Command("npm", "install", "-g", "bower")
-		log.Printf("Installed Bower :)")
-        }
-	else {
+	err5 := cmd5.Start()
+	if err5 != nil { 
+		log.Fatal(err)               
+		log.Printf("Sorry you do not have bower installed.Please install Bower manually to kickastart.")				
+        } else {
 		log.Printf("You have Bower installed.That's Great.:)")			
 	}	                 
 	
 	//Installing Ally
-	log.Printf("Installing Ally -> ")	
+	//fmt.Println("Installing Ally")	
 	cmd7 := exec.Command("bower", "install", "a11y.js", "--save")	
 	err7 := cmd7.Start()	
 	if err7 != nil {

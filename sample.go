@@ -7,7 +7,7 @@ import (
 )
 
 
-func main(){
+func sample(){
 
    fmt.Println("You can install the following watson utilites (Kale/Runner)")
    	scan := bufio.NewScanner(os.Stdin)
