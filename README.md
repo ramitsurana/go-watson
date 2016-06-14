@@ -18,6 +18,21 @@ enviorment of Watson on your favorite OS(Operating System).
 * Can be built up on [Docker](http://github.com/docker/docker)
 * Built using [Golang](http://github.com/golang/go)
 
+## Behind the Curtains:
+-----------------------
+
+Go-watson works by testing your enviorment if it meets the following prerequisites:
+* Docker
+* Npm
+* Yeoman Generator
+
+After these prerequisites are met it installs the watson npm package to your system.
+Using the `yo watson` you can start watson on your enviorment.Thereafter, you can 
+install various utilities of watson,presently:
+* Kale [CLI tool]
+* Runner [Task Runner]
+* A11y.js [JS helpers]
+
 ## How does it work:
 -------------------
 
@@ -26,7 +41,8 @@ Currently the watson enviorment can be installed and run using 2 methods:
 ### Using Github repo:
 
 * Download the repository `https://github.com/ramitsurana/go-watson`
-* TBC(TO Be Continued)....
+* `cd go-watson`
+* `go run *.go`
 
 ### Using Docker:
 
